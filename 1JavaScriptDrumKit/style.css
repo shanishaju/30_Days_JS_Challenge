@@ -1,6 +1,6 @@
 html {
     font-size: 10px;
-    background: url('./background.jpg') bottom center;
+    background: url('./drum-kit-dark-background-with-stage-lighting-copy-space_169016-13944.avif') bottom center;
     background-size: cover;
   }
   
@@ -19,7 +19,7 @@ html {
   }
   
   .key {
-    border: .4rem solid black;
+    border: .4rem solid white;
     border-radius: .5rem;
     margin: 1rem;
     font-size: 1.5rem;
@@ -49,7 +49,7 @@ html {
     letter-spacing: .1rem;
     color: #ffc600;
   }
-  
+
   @media (max-width: 600px) {
     .keys {
       max-width: 100%;
