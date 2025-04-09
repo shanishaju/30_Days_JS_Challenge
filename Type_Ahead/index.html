@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/✅" />
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+
+  <script>
+    const cities = [
+      { city: "Thiruvananthapuram", state: "Kerala", population: 957730 },
+      { city: "Kochi", state: "Kerala", population: 677381 },
+      { city: "Kozhikode", state: "Kerala", population: 609224 },
+      { city: "Thrissur", state: "Kerala", population: 315957 },
+      { city: "Kannur", state: "Kerala", population: 232486 },
+      { city: "Kollam", state: "Kerala", population: 397419 },
+      { city: "Alappuzha", state: "Kerala", population: 240991 },
+      { city: "Palakkad", state: "Kerala", population: 130955 },
+      { city: "Kottayam", state: "Kerala", population: 136812 },
+      { city: "Malappuram", state: "Kerala", population: 101386 },
+      { city: "Pathanamthitta", state: "Kerala", population: 119231 },
+      { city: "Idukki", state: "Kerala", population: 110745 },
+      { city: "Wayanad", state: "Kerala", population: 84620 },
+      { city: "Kasargod", state: "Kerala", population: 128890 },
+      { city: "Varkala", state: "Kerala", population: 40248 },
+      { city: "Changanassery", state: "Kerala", population: 51401 },
+      { city: "Punalur", state: "Kerala", population: 46670 },
+      { city: "Muvattupuzha", state: "Kerala", population: 29982 },
+      { city: "Nedumangad", state: "Kerala", population: 60233 },
+      { city: "Perinthalmanna", state: "Kerala", population: 49934 }
+    ];
+
+    function findMatches(wordToMatch, cities) {
+      return cities.filter(place => {
+        const regex = new RegExp(wordToMatch, 'gi');
+        return place.city.match(regex) || place.state.match(regex);
+      });
+    }
+
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function displayMatches() {
+      const matchArray = findMatches(this.value, cities);
+      const html = matchArray.map(place => {
+        const regex = new RegExp(this.value, 'gi');
+        const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+        const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+        return `
+          <li>
+            <span class="name">${cityName}, ${stateName}</span>
+            <span class="population">${numberWithCommas(place.population)}</span>
+          </li>
+        `;
+      }).join('');
+      suggestions.innerHTML = html;
+    }
+
+    const searchInput = document.querySelector('.search');
+    const suggestions = document.querySelector('.suggestions');
+
+    searchInput.addEventListener('change', displayMatches);
+    searchInput.addEventListener('keyup', displayMatches);
+  </script>
+
+</body>
+</html>
