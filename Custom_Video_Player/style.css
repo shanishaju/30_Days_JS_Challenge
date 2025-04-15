@@ -17,16 +17,25 @@ html {
     align-items: center;
     justify-content: center;
   }
-  
   .player {
-    max-width: 750px;
-    border: 5px solid rgba(0,0,0,0.2);
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
     font-size: 0;
     overflow: hidden;
   }
   
+  .player__video {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover; /* ensures the video fills the screen without distortion */
+  }
   /* This css is only applied when fullscreen is active. */
   .player:fullscreen {
     max-width: none;
