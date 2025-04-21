@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+  <link rel="icon" href="https://fav.farm/✅" />
+</head>
+<body>
+
+  <script>
+    // Array copy examples
+    const players = ['Sha', 'Sarah', 'Ryan', 'Poppy'];
+
+    const team2 = players.slice();
+    const team3 = [].concat(players);
+    const team4 = [...players];
+    const team5 = Array.from(players);
+
+    team4[3] = 'heeee hawww';
+    console.log('Original:', players);
+    console.log('Modified Copy:', team4);
+
+    // Object copy examples
+    const person = {
+      name: 'Shani S',
+      age: 80
+    };
+
+    const cap2 = Object.assign({}, person, { number: 99, age: 12 });
+    console.log('Copied Object with Overrides:', cap2);
+
+    const wes = {
+      name: 'Shani S',
+      age: 100,
+      social: {
+        twitter: '@shanis',
+        facebook: 'shani.developer'
+      }
+    };
+
+    console.clear();
+    console.log('Original Nested Object:', wes);
+
+    const dev = Object.assign({}, wes); // Shallow copy
+    const dev2 = JSON.parse(JSON.stringify(wes)); // Deep copy
+    console.log('Shallow Copy:', dev);
+    console.log('Deep Copy:', dev2);
+
+  </script>
+
+</body>
+</html>
